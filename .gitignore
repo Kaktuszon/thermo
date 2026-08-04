@@ -1,4 +1,4 @@
 .pio
 include/
-lib/
+lib/README
 test/
