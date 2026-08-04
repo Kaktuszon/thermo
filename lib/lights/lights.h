@@ -7,8 +7,8 @@ class Lights {
             pinMode(pin, OUTPUT);
         }
 
-        void on(WiFiClient _client);
-        void off(WiFiClient _client);
+        void on(WiFiClient _client, String _domain);
+        void off(WiFiClient _client, String _domain);
 
     private:
         int pin;

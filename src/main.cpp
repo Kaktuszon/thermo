@@ -10,6 +10,7 @@
 
 WiFiClient client;
 Adafruit_SHT31 sht31;
+String domain;
 
 Lights led(2);
 Temperature temperature;
@@ -17,6 +18,7 @@ Temperature temperature;
 void setup() {
     Serial.begin(115200);
     WiFiManager wm;
+    domain = "192.168.1.114"; // Hard coded IPs are the best
 
     bool res = wm.autoConnect("ESP8266", "12345678");
     if(!res) {
@@ -30,9 +32,9 @@ void setup() {
 }
 
 void loop() {
-    led.on(client);
+    led.on(client, domain);
     delay(1000);
-    led.off(client);
+    led.off(client, domain);
     delay(1000);
 
     temperature.setTemperatureAndHumidity(sht31.readTemperature(), sht31.readHumidity());

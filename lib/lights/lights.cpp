@@ -4,18 +4,18 @@
 
 #include "lights.h"
 
-void Lights::on(WiFiClient _client) {
+void Lights::on(WiFiClient _client, String _domain) {
     digitalWrite(pin, LOW);
     HTTPClient http;
-    http.begin(_client, "http://192.168.1.114:3001/api/light/on");
+    http.begin(_client, "http://" + _domain + ":3001/api/light/on");
     int code = http.POST("");
     http.end();
 }
 
-void Lights::off(WiFiClient _client) {
+void Lights::off(WiFiClient _client, String _domain) {
     digitalWrite(pin, HIGH); 
     HTTPClient http;
-    http.begin(_client, "http://192.168.1.114:3001/api/light/off");
+    http.begin(_client, "http://" + _domain + ":3001/api/light/off");
     int code = http.POST("");
     http.end();
 }
