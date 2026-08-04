@@ -1,0 +1,21 @@
+#include <Arduino.h>
+#include <ESP8266HTTPClient.h>
+#include <ESP8266WiFi.h>
+
+#include "lights.h"
+
+void Lights::on(WiFiClient _client) {
+    digitalWrite(pin, LOW);
+    HTTPClient http;
+    http.begin(_client, "http://192.168.1.114:3001/api/light/on");
+    int code = http.POST("");
+    http.end();
+}
+
+void Lights::off(WiFiClient _client) {
+    digitalWrite(pin, HIGH); 
+    HTTPClient http;
+    http.begin(_client, "http://192.168.1.114:3001/api/light/off");
+    int code = http.POST("");
+    http.end();
+}
