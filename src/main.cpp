@@ -14,6 +14,7 @@ String domain;
 
 Lights led(2);
 Temperature temperature;
+uint32_t identifier;
 
 void setup() {
     Serial.begin(115200);
@@ -29,6 +30,8 @@ void setup() {
     sht31 = Adafruit_SHT31();
     Wire.begin();
     sht31.begin(0x44);
+
+    identifier = ESP.getChipId();
 }
 
 void loop() {
@@ -42,12 +45,16 @@ void loop() {
     if (temperature.valid()) {
         HTTPClient http;
         Serial.printf("Temp: %.2f C, Hum: %.2f %%\n", temperature.getTemperatureAndHumidity().temperature, temperature.getTemperatureAndHumidity().humidity);
+        Serial.printf("Identifier: %s\n" String(identifier));
 
         http.begin(client, "http://192.168.1.114:3001/api/temperature");
         http.addHeader("Content-Type", "application/json");
 
-        String payload = "{\"temperature\":" + String(temperature.getTemperatureAndHumidity().temperature) + "," +
-        "\"humidity\":" + String(temperature.getTemperatureAndHumidity().humidity) + "}";
+        String payload = String("{") +
+        "\"temperature\":" + String(temperature.getTemperatureAndHumidity().temperature) + "," +
+        "\"humidity\":" + String(temperature.getTemperatureAndHumidity().humidity) + "," +
+        "\"identifier\":" + "\"" + String(identifier) + "\"" +
+        String("}");
         int code = http.POST(payload);
 
         Serial.printf("POST /api/temperature -> %d\n", code);
