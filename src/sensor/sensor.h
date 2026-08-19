@@ -19,7 +19,6 @@ class Sensor {
         SensorType getSensor();
 
         Adafruit_SHT31 *getSHT31();
-        OneWire *getOneWire();
         DallasTemperature *getDS18B20();
     
     private:

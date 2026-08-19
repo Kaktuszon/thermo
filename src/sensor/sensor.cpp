@@ -36,9 +36,7 @@ Sensor::SensorType Sensor::getSensor() {
 Adafruit_SHT31 *Sensor::getSHT31() {
     return _sht31;
 }
-OneWire *Sensor::getOneWire() {
-    return _oneWire;
-}
+
 DallasTemperature *Sensor::getDS18B20() {
     return _ds18b20;
 }

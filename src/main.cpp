@@ -45,7 +45,7 @@ void loop() {
     led.off(client, domain);
     delay(1000);
 
-    temperature.setTemperatureAndHumidity(sensor.getSensor());
+    temperature.setTemperatureAndHumidity(sensor);
 
     if (temperature.valid()) {
         HTTPClient http;
