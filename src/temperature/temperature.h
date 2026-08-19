@@ -1,6 +1,8 @@
 #ifndef TEMPERATURE_H
 #define TEMPERATURE_H
 
+#include "sensor/sensor.h"
+
 class Temperature {    
     public:
         struct tempHum {
@@ -9,7 +11,7 @@ class Temperature {
         };
 
         tempHum getTemperatureAndHumidity();
-        void setTemperatureAndHumidity(float _temperature, float _humidity);
+        void setTemperatureAndHumidity(Sensor::SensorType _sensor);
         
         bool valid();
 
