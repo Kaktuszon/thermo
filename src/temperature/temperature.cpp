@@ -3,7 +3,6 @@
 #include "temperature.h"
 #include "Adafruit_SHT31.h"
 #include "DallasTemperature.h"
-#include "OneWire.h"
 #include "sensor/sensor.h"
 
 
