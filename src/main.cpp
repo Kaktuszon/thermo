@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include <Adafruit_SHT31.h>
 
-#include "lights.h"
+#include "lights/lights.h"
 #include "temperature/temperature.h"
 #include "sensor/sensor.h"
 
@@ -22,17 +22,17 @@ void setup() {
     Serial.begin(115200);
     WiFiManager wm;
     domain = "192.168.1.114"; // Hard coded IPs are the best
+    identifier = ESP.getChipId();
+    String apName = "ESP8266-" + String(identifier);
 
-    bool res = wm.autoConnect("ESP8266", "12345678");
+    bool res = wm.autoConnect(apName.c_str(), "12345678");
     if(!res) {
         Serial.println("Failed to auto connect WiFi!");
-        wm.startConfigPortal("ESP8266", "12345678");
+        wm.startConfigPortal(apName.c_str(), "12345678");
     }
 
     sensor.setSensor();
     Serial.printf("Sensor: %d\n", sensor.getSensor());
-
-    identifier = ESP.getChipId();
 }
 
 void loop() {
