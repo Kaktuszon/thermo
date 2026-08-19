@@ -29,10 +29,6 @@ void setup() {
         wm.startConfigPortal("ESP8266", "12345678");
     }
 
-    // sht31 = Adafruit_SHT31();
-    // Wire.begin();
-    // sht31.begin(0x44);
-
     sensor.setSensor();
     Serial.printf("Sensor: %d\n", sensor.getSensor());
 
