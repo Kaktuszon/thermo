@@ -47,18 +47,18 @@ DallasTemperature *Sensor::getDS18B20() {
 Sensor::Sensor() {}
 
 Sensor::~Sensor() {
-    if(sht31 != nullptr) {
-        delete sht31;
-        sht31 = nullptr;
+    if(_sht31 != nullptr) {
+        delete _sht31;
+        _sht31 = nullptr;
     }
 
-    if(ds18b20 != nullptr) {
-        delete ds18b20;
-        ds18b20 = nullptr;
+    if(_ds18b20 != nullptr) {
+        delete _ds18b20;
+        _ds18b20 = nullptr;
     }
 
-    if(oneWire != nullptr) {
-        delete oneWire;
-        oneWire = nullptr;
+    if(_oneWire != nullptr) {
+        delete _oneWire;
+        _oneWire = nullptr;
     }
 }
