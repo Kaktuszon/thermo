@@ -3,7 +3,6 @@
 
 class Sensor {
     public:
-        Sensor();
         enum SensorType {
             None,
             SHT31,

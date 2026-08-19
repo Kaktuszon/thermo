@@ -17,7 +17,7 @@ void Sensor::setSensor() {
         return;
     }
 
-    OneWire oneWire(2);
+    OneWire oneWire(4);
     DallasTemperature ds18b20(&oneWire);
     ds18b20.begin();
     if(ds18b20.getDeviceCount() > 0) {
@@ -25,6 +25,8 @@ void Sensor::setSensor() {
         Serial.println("Sensor of type DS18B20 found!");
         return;
     }
+
+    Serial.println("No sensors found!");
 }
 
 Sensor::SensorType Sensor::getSensor() {
