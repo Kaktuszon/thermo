@@ -48,7 +48,8 @@ void loop() {
         Serial.printf("Temp: %.2f C, Hum: %.2f %%\n", temperature.getTemperatureAndHumidity().temperature, temperature.getTemperatureAndHumidity().humidity);
         Serial.printf("Identifier: %u\n", identifier);
 
-        http.begin(client, "http://192.168.1.114:3001/api/temperature");
+        String url = "http://" + domain + ":3001/api/temperature";
+        http.begin(client, url);
         http.addHeader("Content-Type", "application/json");
 
         String payload = String("{") +
