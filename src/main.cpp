@@ -6,7 +6,8 @@
 #include <Adafruit_SHT31.h>
 
 #include "lights.h"
-#include "temperature.h"
+#include "temperature/temperature.h"
+#include "sensor/sensor.h"
 
 WiFiClient client;
 Adafruit_SHT31 sht31;
@@ -15,6 +16,7 @@ String domain;
 Lights led(2);
 Temperature temperature;
 uint32_t identifier;
+Sensor sensor;
 
 void setup() {
     Serial.begin(115200);
@@ -27,9 +29,12 @@ void setup() {
         wm.startConfigPortal("ESP8266", "12345678");
     }
 
-    sht31 = Adafruit_SHT31();
-    Wire.begin();
-    sht31.begin(0x44);
+    // sht31 = Adafruit_SHT31();
+    // Wire.begin();
+    // sht31.begin(0x44);
+
+    sensor.setSensor();
+    Serial.printf("Sensor: %d\n", sensor.getSensor());
 
     identifier = ESP.getChipId();
 }
@@ -40,7 +45,7 @@ void loop() {
     led.off(client, domain);
     delay(1000);
 
-    temperature.setTemperatureAndHumidity(sht31.readTemperature(), sht31.readHumidity());
+    temperature.setTemperatureAndHumidity(sensor.getSensor());
 
     if (temperature.valid()) {
         HTTPClient http;
