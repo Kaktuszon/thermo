@@ -17,12 +17,16 @@ class Sensor {
 
         void setSensor();
         SensorType getSensor();
+
+        Adafruit_SHT31 *getSHT31();
+        OneWire *getOneWire();
+        DallasTemperature *getDS18B20();
     
     private:
-        SensorType currentSensor;
-        Adafruit_SHT31 *sht31 = nullptr;
-        OneWire *oneWire = nullptr;
-        DallasTemperature *ds18b20 = nullptr;
+        SensorType _currentSensor;
+        Adafruit_SHT31 *_sht31 = nullptr;
+        OneWire *_oneWire = nullptr;
+        DallasTemperature *_ds18b20 = nullptr;
 };
 
 #endif

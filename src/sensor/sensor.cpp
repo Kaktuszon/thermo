@@ -7,21 +7,21 @@
 #include "sensor.h"
 
 void Sensor::setSensor() {
-    currentSensor = None;
+    _currentSensor = None;
 
     Wire.begin();
-    sht31 = new Adafruit_SHT31();
-    if(sht31->begin(0x44)) {
-        currentSensor = SHT31;
+    _sht31 = new Adafruit_SHT31();
+    if(_sht31->begin(0x44)) {
+        _currentSensor = SHT31;
         Serial.println("Sensor of type SHT31 found!");
         return;
     }
 
-    oneWire = new OneWire(4);
-    ds18b20 = new DallasTemperature(oneWire);
-    ds18b20->begin();
-    if(ds18b20->getDeviceCount() > 0) {
-        currentSensor = DS18B20;
+    _oneWire = new OneWire(4);
+    _ds18b20 = new DallasTemperature(_oneWire);
+    _ds18b20->begin();
+    if(_ds18b20->getDeviceCount() > 0) {
+        _currentSensor = DS18B20;
         Serial.println("Sensor of type DS18B20 found!");
         return;
     }
@@ -30,8 +30,19 @@ void Sensor::setSensor() {
 }
 
 Sensor::SensorType Sensor::getSensor() {
-    return currentSensor;
+    return _currentSensor;
 }
+
+Adafruit_SHT31 *Sensor::getSHT31() {
+    return _sht31;
+}
+OneWire *Sensor::getOneWire() {
+    return _oneWire;
+}
+DallasTemperature *Sensor::getDS18B20() {
+    return _ds18b20;
+}
+
 
 Sensor::Sensor() {}
 
