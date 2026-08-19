@@ -11,7 +11,7 @@ class Temperature {
         };
 
         tempHum getTemperatureAndHumidity();
-        void setTemperatureAndHumidity(Sensor _sensor);
+        void setTemperatureAndHumidity(Sensor &_sensor);
         
         bool valid();
 

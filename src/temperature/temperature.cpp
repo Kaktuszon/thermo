@@ -11,7 +11,7 @@ Temperature::tempHum Temperature::getTemperatureAndHumidity() {
     return data;
 }
 
-void Temperature::setTemperatureAndHumidity(Sensor _sensor) {
+void Temperature::setTemperatureAndHumidity(Sensor &_sensor) {
     Sensor::SensorType sensorType = _sensor.getSensor();
     if(sensorType == Sensor::SHT31) {
         Wire.begin();
